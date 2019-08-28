@@ -319,6 +319,11 @@ if (CCACHE AND CCACHE_PROGRAM AND NOT DEFINED ENV{CCACHE_DISABLE})
 		set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
 	endif()
 
+
+	# To prevent "// fallthrough" comments from being stripped by the preprocessor
+	# before ccache looks at the cache.
+	set(CCACHE_CPP2 "yes")
+
 endif()
 
 #=============================================================================
