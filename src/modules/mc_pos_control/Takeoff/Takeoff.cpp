@@ -58,6 +58,9 @@ void Takeoff::updateTakeoffState(const bool armed, const bool landed, const bool
 			break;
 		}
 
+		// FALLTHROUGH
+		[[gnu::fallthrough]];
+
 	case TakeoffState::spoolup:
 		if (_spoolup_time_hysteresis.get_state()) {
 			_takeoff_state = TakeoffState::ready_for_takeoff;
@@ -65,6 +68,9 @@ void Takeoff::updateTakeoffState(const bool armed, const bool landed, const bool
 		} else {
 			break;
 		}
+
+		// FALLTHROUGH
+		[[gnu::fallthrough]];
 
 	case TakeoffState::ready_for_takeoff:
 		if (want_takeoff) {
@@ -75,6 +81,9 @@ void Takeoff::updateTakeoffState(const bool armed, const bool landed, const bool
 			break;
 		}
 
+		// FALLTHROUGH
+		[[gnu::fallthrough]];
+
 	case TakeoffState::rampup:
 		if (_takeoff_ramp_vz >= takeoff_desired_vz) {
 			_takeoff_state = TakeoffState::flight;
@@ -82,6 +91,9 @@ void Takeoff::updateTakeoffState(const bool armed, const bool landed, const bool
 		} else {
 			break;
 		}
+
+		// FALLTHROUGH
+		[[gnu::fallthrough]];
 
 	case TakeoffState::flight:
 		if (landed) {
